@@ -1,7 +1,7 @@
 import requests, sys, random, argparse
 
 def main(initial, topics, iterations):
-    seen_words = ['hack']
+    seen_words = [initial]
     base_format_url = "https://api.datamuse.com/words?rel_trg={}&topics={}"
     start_url = base_format_url.format(initial, topics)
     response = requests.get(start_url)
