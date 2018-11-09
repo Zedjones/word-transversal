@@ -1,4 +1,6 @@
-import requests, sys
+import requests, sys, random, argparse
+
+#TODO: add argparser 
 
 def main(iterations):
     seen_words = ['hack']
@@ -6,7 +8,7 @@ def main(iterations):
     start_url = base_format_url.format("hack")
     response = requests.get(start_url)
     resp_json = response.json()
-    curr_ind = 0
+    curr_ind = random.randint(0, 3)
     potential = resp_json[curr_ind]['word']
     while potential in seen_words:
         curr_ind += 1
@@ -18,7 +20,7 @@ def main(iterations):
         curr_url = base_format_url.format(potential)
         response = requests.get(curr_url)
         resp_json = response.json()
-        curr_ind = 0
+        curr_ind = random.randint(0, 3)
         potential = resp_json[curr_ind]['word']
         while potential in seen_words:
             curr_ind += 1
