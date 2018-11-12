@@ -1,9 +1,12 @@
 import requests, sys, random, argparse
+from anytree import Node, RenderTree
 
-def main(initial, topics, iterations):
+BASE_FORMAT_URL = "https://api.datamuse.com/words?rel_trg={}&topics={}"
+
+def random_iteration(initial, topics, iterations):
     seen_words = [initial]
-    base_format_url = "https://api.datamuse.com/words?rel_trg={}&topics={}"
-    start_url = base_format_url.format(initial, topics)
+    BASE_FORMAT_URL = "https://api.datamuse.com/words?rel_trg={}&topics={}"
+    start_url = BASE_FORMAT_URL.format(initial, topics)
     response = requests.get(start_url)
     resp_json = response.json()
     curr_ind = random.randint(0, 3)
@@ -14,7 +17,7 @@ def main(initial, topics, iterations):
     else:
         seen_words.append(potential)
     for _ in range(0, iterations):
-        curr_url = base_format_url.format(potential, topics)
+        curr_url = BASE_FORMAT_URL.format(potential, topics)
         response = requests.get(curr_url)
         resp_json = response.json()
         curr_ind = random.randint(0, 3)
@@ -26,6 +29,16 @@ def main(initial, topics, iterations):
             seen_words.append(potential)
     print(seen_words)
 
+def layered_iteration(initial, topics, iterations):
+    word_dict = {}
+    root = Node(initial)
+    word_dict[initial] = root
+    start_url = BASE_FORMAT_URL.format(initial, topics)
+    response = requests.get(start_url)
+    synonyms = response.json()
+    
+
+
 if __name__ == '__main__':
     main_parser = argparse.ArgumentParser()
     main_parser.add_argument('--initial', '-s', default="hack", help="Initial word to start with")
@@ -35,4 +48,4 @@ if __name__ == '__main__':
     main_parser.add_argument('--iterations', '-i', required=True, type=int,
                              help="Number of iterations to go down")
     args = main_parser.parse_args()
-    main(args.initial, args.topics, args.iterations)
+    random_iteration(args.initial, args.topics, args.iterations)
