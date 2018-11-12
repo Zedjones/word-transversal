@@ -28,8 +28,8 @@ def main(initial, topics, iterations):
 
 if __name__ == '__main__':
     main_parser = argparse.ArgumentParser()
-    main_parser.add_argument('--initial', '-s', required=True, help="Initial word to start with")
-    main_parser.add_argument('--topics', '-t', nargs=1, required=True,
+    main_parser.add_argument('--initial', '-s', default="hack", help="Initial word to start with")
+    main_parser.add_argument('--topics', '-t', nargs=1, default="technology",
                              help="Comma separated topic list to make " \
                                   "sure the words are roughly related to")
     main_parser.add_argument('--iterations', '-i', required=True, type=int,
