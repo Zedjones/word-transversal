@@ -9,6 +9,6 @@ setup(name='word-transversal',
       license='GPL-2.0',
       packages=[],
       install_requires=[
-          'argparse', 'anytree'
+          'argparse', 'anytree', 'graphviz'
       ],
       zip_safe=False)
