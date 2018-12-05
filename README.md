@@ -4,7 +4,7 @@ A program to recursively construct a tree of related words based off
 of an initial word and a list of topics (can also specify no topics). 
 The depth of the recursion is also specified by the user. 
 The tree will then be saved as a .png file in the root directory of 
-the repository with the name 'root.png'.
+the repository with the name 'root.png'. 
 
 ## Table of Contents
 <!-- vim-markdown-toc GFM --> 
@@ -12,6 +12,7 @@ the repository with the name 'root.png'.
 * [Setup and Running](#setup-and-running)
 * [Usage](#usage)
 * [Licensing](#licensing)
+* [Credits](#credits)
 * [Future Features](#future-features)
 
 ## Requirements
@@ -40,6 +41,9 @@ usage information.
 
 ## Licensing
 All files are licensed under GPL 2.0
+
+## Credits
+Related words are found using the [Datamuse API](https://www.datamuse.com/api/).
 
 ## Future Features
 * GUI for ease of use by non-developers
