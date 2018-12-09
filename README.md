@@ -11,6 +11,7 @@ the repository with the name 'root.png'.
 * [Requirements](#requirements)
 * [Setup and Running](#setup-and-running)
 * [Usage](#usage)
+* [Example](#example)
 * [Licensing](#licensing)
 * [Credits](#credits)
 * [Future Features](#future-features)
@@ -38,6 +39,10 @@ usage information.
                             Number of iterations/depth to go down
     --breadth BREADTH, -b BREADTH
                             Number of related words on each depth level
+                            
+## Example
+The following image is the output from: `python3 analyzer.py --initial happy --iterations 4 -b 2 --topics emotion`
+![Example Output](root.png)
 
 ## Licensing
 All files are licensed under GPL 2.0
