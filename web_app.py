@@ -31,31 +31,27 @@ def get_picture():
     form = MainForm(request.form)
     iterations = form.iterations.data
     if form.initial_word.data != "":
-        root = Node(form.initial_word.data)
-        initial_word = form.initial_word.data
+        root = Node(form.initial_word.data.lower())
+        initial_word = form.initial_word.data.lower()
     else:
         root = Node(DEFAULT_INITIAL_WORD)
         initial_word = DEFAULT_INITIAL_WORD
     if form.breadth.data != "":
-        breadth = int(form.breadth.data)
+        breadth = form.breadth.data
     else:
         breadth = DEFAULT_BREADTH
+
     topics_list = [form.topic1.data, form.topic2.data, form.topic3.data, 
               form.topic4.data, form.topic5.data]
     topics = ""
-    if not all(topics_list):
-        topics = DEFAULT_TOPICS
-    else:
-        if form.topic1.data:
-            topics += form.topic1.data 
-        if form.topic2.data:
-            topics += ",{}".format(form.topic2.data)
-        if form.topic3.data:
-            topics += ",{}".format(form.topic3.data)
-        if form.topic4.data:
-            topics += ",{}".format(form.topic4.data)
-        if form.topic5.data:
-            topics += ",{}".format(form.topic5.data)
+
+    if any(topics_list):
+        filtered_topics = list(filter(lambda x: x, topics_list))
+        for i in range(0, len(filtered_topics)):
+            if i == 0:
+                topics += filtered_topics[i].lower()
+            else:
+                topics += ",{}".format(filtered_topics[i].lower()) 
 
     seen_words = [initial_word]
 
@@ -70,6 +66,9 @@ def get_picture():
     seen_words.append(initial_word + "s")
     seen_words.append(initial_word + "es")
     
+    print(initial_word, topics, iterations, breadth, seen_words)
+    print(type(initial_word), type(topics), type(iterations), type(breadth))
+
     layered_iteration(initial_word, topics, root, 0, iterations, seen_words,
                       breadth, {})
     DotExporter(root).to_picture("./root.png")

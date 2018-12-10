@@ -2,12 +2,16 @@ import requests, sys, random, argparse
 from anytree import Node, RenderTree
 from anytree.exporter import DotExporter
 
-BASE_FORMAT_URL = "https://api.datamuse.com/words?rel_trg={}&topics={}"
+BASE_FORMAT_URL = "https://api.datamuse.com/words?rel_trg={}"
+BASE_FORMAT_URL_TOPICS = "https://api.datamuse.com/words?rel_trg={}&topics={}"
 
 def layered_iteration(initial, topics, root, level, max_depth, seen_words, level_words, word_dict):
     if level == max_depth:
         return None
-    url = BASE_FORMAT_URL.format(initial, topics)
+    if topics != "":
+        url = BASE_FORMAT_URL_TOPICS.format(initial, topics)
+    else:
+        url = BASE_FORMAT_URL.format(initial)
     response = requests.get(url)
     synonyms = response.json()
     added = 0 
@@ -43,13 +47,13 @@ def layered_iteration(initial, topics, root, level, max_depth, seen_words, level
 if __name__ == '__main__':
     main_parser = argparse.ArgumentParser()
     main_parser.add_argument('--initial', '-s', default="hack", help="Initial word to start with")
-    main_parser.add_argument('--topics', '-t', nargs=1, default="technology",
+    main_parser.add_argument('--topics', '-t', default="technology",
                              help="Comma separated topic list to make " \
                                   "sure the words are roughly related to. " \
                                   "Type 'None' for no topics")
     main_parser.add_argument('--iterations', '-i', required=True, type=int,
                              help="Number of iterations/depth to go down")
-    main_parser.add_argument('--breadth', '-b', required=False, default=1,
+    main_parser.add_argument('--breadth', '-b', required=False, default=1, type=int,
                              help="Number of related words on each depth level")
     args = main_parser.parse_args()
     root = Node(args.initial)
@@ -66,7 +70,9 @@ if __name__ == '__main__':
         seen_words.append(args.initial[:-2])
     seen_words.append(args.initial + "s")
     seen_words.append(args.initial + "es")
+    print(args.initial, args.topics, args.iterations, args.breadth, seen_words)
+    print(type(args.initial), type(args.topics), type(args.iterations), type(args.breadth))
     layered_iteration(args.initial, args.topics, root, 0, args.iterations, 
-                      seen_words, int(args.breadth), {})
+                      seen_words, args.breadth, {})
     print(RenderTree(root))
     DotExporter(root).to_picture("./root.png")
