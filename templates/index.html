@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Word Transversal</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,32 +12,33 @@
 </head>
 <body>
 
+{% macro render_field(field) %}
+  <dt>{{ field.label }}
+  <dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+{% endmacro %}
+
 <div class="jumbotron text-center">
-    <h1>My First Bootstrap Page</h1>
+    <h1>Word Transversal</h1>
     <p>Resize this responsive page to see the effect!</p> 
   </div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-4">
-        <h3>Column 1</h3>
-        <p>Lorem ipsum dolor..</p>
-        <p>Ut enim ad..</p>
-      </div>
-      <div class="col-sm-4">
-        <h3>Column 2</h3>
-        <p>Lorem ipsum dolor..</p>
-        <p>Ut enim ad..</p>
-      </div>
-      <div class="col-sm-4">
-        <h3>Column 3</h3> 
-        <p>Lorem ipsum dolor..</p>
-        <p>Ut enim ad..</p>
-      </div>
-    </div>
-  </div>
 
-  {% if form %}
-    {{ wtf.quick_form(form, horizontal_columns=('lg', 2, 10)) }}
-  {% endif %}
+  <form class="form-inline">
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Last name">
+        </div>
+      </div>
+    </form>
+
 </body>
