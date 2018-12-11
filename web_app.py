@@ -36,7 +36,7 @@ def get_picture():
     else:
         root = Node(DEFAULT_INITIAL_WORD)
         initial_word = DEFAULT_INITIAL_WORD
-    if form.breadth.data != "":
+    if form.breadth.data:
         breadth = form.breadth.data
     else:
         breadth = DEFAULT_BREADTH
