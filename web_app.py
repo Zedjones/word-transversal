@@ -4,9 +4,12 @@ from wtforms import Form, StringField, IntegerField, FieldList, FormField, valid
 from analyzer import layered_iteration
 from anytree import Node 
 from anytree.exporter import DotExporter
+from time import strftime
+from os import path
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'CDB14257595C9E3B85884E0E366A63267C4980CD5A0AC2395C05CD1591692037'
+app.config['IMAGE_DIR'] = path.join('static', 'images')
 
 DEFAULT_INITIAL_WORD = "hack"
 DEFAULT_TOPICS = "technology"
@@ -71,5 +74,9 @@ def get_picture():
 
     layered_iteration(initial_word, topics, root, 0, iterations, seen_words,
                       breadth, {})
-    DotExporter(root).to_picture("./root.png")
-    return render_template("index.html")
+
+    curr_time = strftime("%m-%d-%Y:%H:%M:%S")
+    pic_path = "{}-{}.png".format(curr_time, initial_word)
+    full_pic_path = path.join(app.config['IMAGE_DIR'], pic_path)
+    DotExporter(root).to_picture(full_pic_path)
+    return render_template("picture_page.html", user_image=full_pic_path)
