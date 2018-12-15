@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
@@ -13,54 +14,67 @@
 
 <div class="jumbotron text-center">
     <h1>Word Transversal</h1>
-    <p>Resize this responsive page to see the effect! </p> 
-  </div>
+    <p>
+      This application recursively constructs a tree of related words based off of an initial word and a list of topics. <br>
+      It then saves the tree as an image and displays it for the user (which can take a bit of time depending on the depth and breadth). <br>
+      Only the number of iterations is required, each of the other fields will use their listed default value if none is specified. <br>
+      Here's how it works:
+      <div class="container">
+        <ul class="list-group">
+          <li class="list-group-item">1) Initialize the current word to the initial word.</li>
+          <li class="list-group-item">2) Use the DataMuse API to search for related words to the current word that fall under the specified topics.</li>
+          <li class="list-group-item">3) Now, we look at x related words, where x is the specified breadth. </li>
+          <li class="list-group-item">4) While there are still iterations remaining, go back to step 2 with each of these words as the new current word.</li>
+        </ul>
+      </div>
+    </p> 
+</div>
 
-    <div class="container">
-      <form method="POST" action="/get_picture" data-toggle="validator">
-        <div class="form-group">
-          <label for="initial_word">Initial Word</label>
-          <input type="text" class="form-control" name="initial_word" id="initial_word" aria-describedby="initial_help" placeholder="Enter initial word">
-          <div class="help-block with-errors">The word to use as the root of the search. Default: hack</div>
-        </div>
-        <div class="form-group" has-feedback>
-            <label for="iterations">Iterations/Depth</label>
-            <input type="number" min="1" max="10" class="form-control" name="iterations" id="iterations" aria-describedby="iterations_help" placeholder="Enter iterations/depth" required>
-            <div class="help-block with-errors">The recursive depth of the operation/number of iterations (1-10). </div>
-        </div>
-        <div class="form-group">
-            <label for="breadth">Breadth/Width</label>
-            <input type="number" min="1" max="4" class="form-control" name="breadth" id="breadth" aria-describedby="breadth_help" placeholder="Enter breadth/width">
-            <div class="help-block with-errors">The number of related words to look at during each iteration. Default: 1</div>
-        </div>
-        <div class="form-group">
-            <label for="topic1">Topic 1</label>
-            <input type="text" class="form-control" name="topic1" id="topic1" aria-describedby="topic1_help" placeholder="Enter first topic">
-            <div class="help-block with-errors">The first topic to search for related words under. Default: None, Example: technology</div>
-        </div>
-        <div class="form-group">
-            <label for="topic2">Topic 2</label>
-            <input type="text" class="form-control" name="topic2" id="topic2" aria-describedby="topic2_help" placeholder="Enter second topic">
-            <div class="help-block with-errors">The second topic to search for related words under. Default: None, Example: science</div>
-        </div>
-        <div class="form-group">
-            <label for="topic3">Topic 3</label>
-            <input type="text" class="form-control" name="topic3" id="topic3" aria-describedby="topic3_help" placeholder="Enter third topic">
-            <div class="help-block with-errors">The third topic to search for related words under. Default: None, Example: programming</div>
-        </div>
-        <div class="form-group">
-            <label for="topic4">Topic 4</label>
-            <input type="text" class="form-control" name="topic4" id="topic4" aria-describedby="topic4_help" placeholder="Enter fourth topic">
-            <div class="help-block with-errors">The fourth topic to search for related words under. Default: None, Example: emotions</div>
-        </div>
-        <div class="form-group">
-            <label for="topic5">Topic 5</label>
-            <input type="text" class="form-control" name="topic5" id="topic5" aria-describedby="topic5_help" placeholder="Enter fifth topic">
-            <div class="help-block with-errors">The fifth topic to search for related words under. Default: None, Example: medical</div>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit form</button>
-      </form>
+<div class="container">
+  <form method="POST" action="/get_picture" data-toggle="validator">
+    <div class="form-group">
+      <label for="initial_word">Initial Word</label>
+      <input type="text" class="form-control" name="initial_word" id="initial_word" aria-describedby="initial_help" placeholder="Enter initial word">
+      <div class="help-block with-errors">The word to use as the root of the search. Default: hack</div>
     </div>
+    <div class="form-group" has-feedback>
+        <label for="iterations">Iterations/Depth</label>
+        <input type="number" min="1" max="10" class="form-control" name="iterations" id="iterations" aria-describedby="iterations_help" placeholder="Enter iterations/depth" required>
+        <div class="help-block with-errors">The recursive depth of the operation/number of iterations (1-10). </div>
+    </div>
+    <div class="form-group">
+        <label for="breadth">Breadth/Width</label>
+        <input type="number" min="1" max="4" class="form-control" name="breadth" id="breadth" aria-describedby="breadth_help" placeholder="Enter breadth/width">
+        <div class="help-block with-errors">The number of related words to look at during each iteration (1-4). Default: 1</div>
+    </div>
+    <div class="form-group">
+        <label for="topic1">Topic 1</label>
+        <input type="text" class="form-control" name="topic1" id="topic1" aria-describedby="topic1_help" placeholder="Enter first topic">
+        <div class="help-block with-errors">The first topic to search for related words under. Default: None, Example: technology</div>
+    </div>
+    <div class="form-group">
+        <label for="topic2">Topic 2</label>
+        <input type="text" class="form-control" name="topic2" id="topic2" aria-describedby="topic2_help" placeholder="Enter second topic">
+        <div class="help-block with-errors">The second topic to search for related words under. Default: None, Example: science</div>
+    </div>
+    <div class="form-group">
+        <label for="topic3">Topic 3</label>
+        <input type="text" class="form-control" name="topic3" id="topic3" aria-describedby="topic3_help" placeholder="Enter third topic">
+        <div class="help-block with-errors">The third topic to search for related words under. Default: None, Example: programming</div>
+    </div>
+    <div class="form-group">
+        <label for="topic4">Topic 4</label>
+        <input type="text" class="form-control" name="topic4" id="topic4" aria-describedby="topic4_help" placeholder="Enter fourth topic">
+        <div class="help-block with-errors">The fourth topic to search for related words under. Default: None, Example: emotions</div>
+    </div>
+    <div class="form-group">
+        <label for="topic5">Topic 5</label>
+        <input type="text" class="form-control" name="topic5" id="topic5" aria-describedby="topic5_help" placeholder="Enter fifth topic">
+        <div class="help-block with-errors">The fifth topic to search for related words under. Default: None, Example: medical</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </form>
+</div>
 
   <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
