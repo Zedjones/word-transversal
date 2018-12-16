@@ -14,20 +14,22 @@
 
 <div class="jumbotron text-center">
     <h1>Word Transversal</h1>
-    <p>
-      This application recursively constructs a tree of related words based off of an initial word and a list of topics. <br>
-      It then saves the tree as an image and displays it for the user (which can take a bit of time depending on the depth and breadth). <br>
-      Only the number of iterations is required, each of the other fields will use their listed default value if none is specified. <br>
-      Here's how it works:
-      <div class="container">
-        <ul class="list-group">
-          <li class="list-group-item">1) Initialize the current word to the initial word.</li>
-          <li class="list-group-item">2) Use the DataMuse API to search for related words to the current word that fall under the specified topics.</li>
-          <li class="list-group-item">3) Now, we look at x related words, where x is the specified breadth. </li>
-          <li class="list-group-item">4) While there are still iterations remaining, go back to step 2 with each of these words as the new current word.</li>
-        </ul>
-      </div>
-    </p> 
+    <div class="container">
+      <p>
+        This application recursively constructs a tree of related words based off of an initial word and a list of topics.
+        It then saves the tree as an image and displays it for the user (which can take a bit of time depending on the depth and breadth).
+        Only the number of iterations is required, each of the other fields will use their listed default value if none is specified. <br>
+        Here's how it works:
+      </p>
+    </div>
+    <div class="container">
+      <ul class="list-group">
+        <li class="list-group-item">1) Initialize the current word to the initial word.</li>
+        <li class="list-group-item">2) Use the DataMuse API to search for related words to the current word that fall under the specified topics.</li>
+        <li class="list-group-item">3) Now, we look at x related words, where x is the specified breadth. </li>
+        <li class="list-group-item">4) While there are still iterations remaining, go back to step 2 with each of these words as the new current word.</li>
+      </ul>
+    </div>
 </div>
 
 <div class="container">
