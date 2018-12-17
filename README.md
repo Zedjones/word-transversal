@@ -12,15 +12,15 @@ If using the web application, the tree will be then be saved in
 'static/images' as a png with the name being a concatenation of 
 the current time with the initial word.
 
-A demo of the web application can be found here: word-transversal.info.
+A demo of the web application can be found here: [word-transversal.info](http://word-transversal.info).
 
 ## Table of Contents
 <!-- vim-markdown-toc GFM --> 
 * [Requirements](#requirements)
-* [Setup and Running: Command Line](#setup-and-running:-command-line)
-* [Usage: Command Line](#usage:-command-line)
-* [Setup and Running: Web App](#setup-and-running:-web-app)
-* [Usage: Web App](#usage:-web-app)
+* [Setup and Running - Command Line](#setup-and-running-command-line)
+* [Usage: Command Line](#usage-command-line)
+* [Setup and Running: Web App](#setup-and-running-web-app)
+* [Usage: Web App](#usage-web-app)
 * [Licensing](#licensing)
 * [Future Features](#future-features)
 
