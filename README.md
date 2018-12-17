@@ -19,6 +19,7 @@ the current time with the initial word.
 * [Requirements](#requirements)
 * [Setup and Running: Command Line](#setup-and-running-command-line)
 * [Usage: Command Line](#usage-command-line)
+* [Example](#example)
 * [Setup and Running: Web App](#setup-and-running-web-app)
 * [Usage: Web App](#usage-web-app)
 * [Licensing](#licensing)
