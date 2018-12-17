@@ -68,9 +68,6 @@ def get_picture():
         seen_words.append(initial_word[:-2])
     seen_words.append(initial_word + "s")
     seen_words.append(initial_word + "es")
-    
-    print(initial_word, topics, iterations, breadth, seen_words)
-    print(type(initial_word), type(topics), type(iterations), type(breadth))
 
     layered_iteration(initial_word, topics, root, 0, iterations, seen_words,
                       breadth, {})
