@@ -1,0 +1,15 @@
+.a {
+    display: inline-block;
+    position: relative;
+  }
+  .shrink {
+    width: 300px;
+  }
+  
+  .a .caption-wrap {
+    position: relative; 
+    left: 0; right: 0;
+    text-align: center;
+    
+  }
+  

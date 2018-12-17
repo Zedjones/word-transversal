@@ -79,4 +79,5 @@ def get_picture():
     pic_path = "{}-{}.png".format(curr_time, initial_word)
     full_pic_path = path.join(app.config['IMAGE_DIR'], pic_path)
     DotExporter(root).to_picture(full_pic_path)
-    return render_template("picture_page.html", user_image=full_pic_path)
+    return render_template("picture_page.html", user_image=full_pic_path, 
+                           initial_word=initial_word, topics=topics)
