@@ -8,8 +8,11 @@ The depth of the recursion is also specified by the user.
 If using the command line, the tree will then be saved as a .png 
 file in the root directory of the repository with the name 'root.png'.
 
-If using the web application, the tree will be then be saved in 'static/images' 
-as a concatenation of the current time with the initial word.
+If using the web application, the tree will be then be saved in
+'static/images' as a png with the name being a concatenation of 
+the current time with the initial word.
+
+A demo of the web application can be found here: word-transversal.info.
 
 ## Table of Contents
 <!-- vim-markdown-toc GFM --> 
