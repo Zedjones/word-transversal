@@ -17,7 +17,7 @@ the current time with the initial word.
 ## Table of Contents
 <!-- vim-markdown-toc GFM --> 
 * [Requirements](#requirements)
-* [Setup and Running - Command Line](#setup-and-running-command-line)
+* [Setup and Running: Command Line](#setup-and-running-command-line)
 * [Usage: Command Line](#usage-command-line)
 * [Setup and Running: Web App](#setup-and-running-web-app)
 * [Usage: Web App](#usage-web-app)
