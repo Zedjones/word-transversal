@@ -30,7 +30,7 @@ the current time with the initial word.
 You must have Python 3 and pip installed to begin the setup process.
 
 ## Setup and Running: Command Line
-To install the necessary dependencies, run `sudo python3 setup.py develop`. After installing the dependencies, you can run the program
+To install the necessary dependencies, run `sudo python3 setup.py install`. After installing the dependencies, you can run the program
 with `python3 analyzer.py` or `python3 analyzer.py --help` to get
 usage information.
 
